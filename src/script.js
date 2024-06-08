@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .replace("%", "*0.01")
             .replace("sin", "Math.sin")
             .replace("cos", "Math.cos")
-            .replace("ln", "Math.log")
+            .replace("/ln/g", "Math.log")
             .replace("π", "Math.PI")
             .replace("log", "Math.log10")
             .replace("e", "Math.E")
@@ -37,7 +37,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 } else if (value == "=") {
                     evaluateResult();
-                } else {
+
+                }else if (value === "←") {
+                    currentValue = currentValue.slice(0, -1); // Remove the last character
+                    display.value = currentValue;
+                    
+                }  else if (value === "x²") {
+                    currentValue = (Math.pow(parseFloat(currentValue), 2)).toString();
+                    display.value = currentValue;
+                }
+                
+                else {
                     currentValue += value;
                     display.value = currentValue;
                 }
